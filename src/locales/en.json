@@ -3,6 +3,17 @@
     "home": "Home",
     "about": "About",
     "skills": "Skills",
-    "projects": "Projects"
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "home": {
+    "intro": {
+      "greeting": "I am {name}",
+      "role": "A {role} web developer",
+      "closing": "I look forward to {action} with you"
+    },
+    "name": "Pyae Phyo Maung",
+    "role": "full stack",
+    "action": "working"
   }
 }

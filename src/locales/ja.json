@@ -3,6 +3,17 @@
     "home": "ホーム",
     "about": "私について",
     "skills": "スキル",
-    "projects": "プロジェクト"
+    "experience": "経験",
+    "contact": "ご連絡"
+  },
+  "home": {
+    "intro": {
+      "greeting": "私は{name}です",
+      "role": "{role}ウェブ開発者です",
+      "closing": "{action}のを楽しみにしています"
+    },
+    "name": "ピェッ ピョー マウン",
+    "role": "フルスタック",
+    "action": "ご一緒に働く"
   }
 }

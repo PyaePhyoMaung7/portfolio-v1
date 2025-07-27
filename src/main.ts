@@ -2,7 +2,7 @@ import './assets/font.css'
 import './assets/main.css'
 
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollTrigger, SplitText } from 'gsap/all'
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
@@ -12,6 +12,7 @@ import ja from './locales/ja.json'
 import router from './router'
 
 gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(SplitText)
 
 const i18n = createI18n({
   legacy: false,

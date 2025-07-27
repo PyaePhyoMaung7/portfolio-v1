@@ -13,6 +13,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@jamescoyle/vue-icon": "^0.1.2",
+    "@mdi/js": "^7.4.47",
     "@tailwindcss/vite": "^4.1.11",
     "gsap": "^3.13.0",
     "pinia": "^3.0.3",
