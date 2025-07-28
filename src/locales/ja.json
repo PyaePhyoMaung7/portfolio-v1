@@ -8,7 +8,7 @@
   },
   "home": {
     "intro": {
-      "greeting": "私は{name}です",
+      "greeting": "{name}です",
       "role": "{role}ウェブ開発者です",
       "closing": "{action}のを楽しみにしています"
     },
