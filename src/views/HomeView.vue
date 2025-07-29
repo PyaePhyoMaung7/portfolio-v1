@@ -117,35 +117,93 @@
               </div>
             </div>
           </section>
-          <section class="about h-130">
-            <div style="height: 120vh">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere repellendus nostrum
-              sunt rem ea? Vero, ad et quibusdam laboriosam quae tempora reiciendis expedita.
-              Quaerat pariatur sed labore perspiciatis, possimus enim odit minima, eum consequuntur
-              hic incidunt nemo in amet est inventore vitae obcaecati, nulla asperiores quia quod
-              quo quasi. Maxime quam ratione animi libero voluptatem, voluptatum commodi recusandae
-              beatae accusamus quibusdam adipisci modi laborum voluptatibus dolorum magni? Soluta
-              sed voluptatibus, dolorem sint magnam ratione molestiae exercitationem sequi a ipsam!
-              Nihil magnam ad facere sunt nemo. Repudiandae reprehenderit et ipsa doloribus, at
-              commodi voluptatum, sit optio cupiditate nihil expedita. Recusandae fugit excepturi
-              reiciendis. Similique ad ipsa voluptatibus earum, iusto, esse ipsum voluptate magni
-              blanditiis quasi exercitationem sequi eveniet dolor quis nisi cum iste nobis, debitis
-              dolorum culpa ullam vitae. Cumque consequatur sunt recusandae quis, vitae corporis
-              repellat impedit molestiae voluptatum quam facere vel! Mollitia temporibus sint ex
-              beatae magni incidunt commodi adipisci quas eveniet similique deserunt, veniam
-              consequatur est cumque, unde itaque modi consectetur nemo at! Exercitationem
-              consectetur, tenetur iure alias eos, quidem eveniet officia voluptatum vitae, ex
-              excepturi a deserunt quasi! Eaque alias ipsam nam quidem illum officiis eos, neque
-              veritatis cumque molestias minima labore odit iure nobis a sunt laudantium dolores!
-              Laboriosam dolores exercitationem delectus sint quasi eligendi possimus aliquid nemo
-              quidem suscipit, repudiandae consequatur labore? Qui dolor unde aperiam dignissimos,
-              perspiciatis nihil aspernatur modi recusandae quae mollitia veniam officiis quas fugit
-              expedita reiciendis, nemo asperiores porro. Tenetur non, amet dicta dolorem, fugit
-              expedita, excepturi architecto mollitia beatae accusamus distinctio pariatur? Nobis
-              tenetur eum quam vitae dolores amet dolorem molestias delectus maxime architecto
-              doloribus hic ipsum suscipit dicta error expedita nemo cum illum, cupiditate possimus
-              iste natus aut! Esse temporibus laborum tempora, officia ipsa tenetur deleniti sed
-              corporis perspiciatis delectus minus, blanditiis sint dicta repudiandae, quis sit?
+          <section class="about h-screen mb-5 flex flex-start items-center">
+            <div class="container grid grid-cols-2 gap-10">
+              <div class="text-xl">
+                <h2 class="text-[#9A5C30] font-bold text-3xl mb-7">{{ t('about.me.title') }}</h2>
+                <p
+                  class="mb-5"
+                  v-html="
+                    formatAboutText(t('about.me.text1', { year: t('about.year') }), 'about.year')
+                  "
+                ></p>
+                <p
+                  class="mb-5"
+                  v-html="
+                    formatAboutText(
+                      t('about.me.text2', { tech1: 'Vue', tech2: 'Nuxt', tech3: 'Laravel' }),
+                      ['Vue', 'Nuxt', 'Laravel'],
+                    )
+                  "
+                ></p>
+                <p
+                  class="mb-5"
+                  v-html="
+                    formatAboutText(
+                      t('about.me.text3', {
+                        value1: t('about.value1'),
+                        value2: t('about.value2'),
+                        value3: t('about.value3'),
+                      }),
+                      ['about.value1', 'about.value2', 'about.value3'],
+                    )
+                  "
+                ></p>
+                <p
+                  class=""
+                  v-html="
+                    formatAboutText(
+                      t('about.me.text4', {
+                        habit1: t('about.habit1'),
+                        habit2: t('about.habit2'),
+                      }),
+                      ['about.habit1', 'about.habit2'],
+                    )
+                  "
+                ></p>
+              </div>
+              <div>
+                <h2 class="text-[#9A5C30] font-bold text-3xl mb-10">
+                  {{ t('about.education.title') }}
+                </h2>
+                <ul>
+                  <li>
+                    <div class="flex items-center gap-5 mb-5 text-xl">
+                      <svg-icon
+                        type="mdi"
+                        :path="mdiBullseyeArrow"
+                        style="width: 30px; height: 30px"
+                        class="text-[#9A5C30]"
+                      ></svg-icon>
+                      <p>
+                        {{ t('about.education.text1') }}
+                      </p>
+                    </div>
+                    <div class="flex items-center gap-5 mb-5 text-xl">
+                      <svg-icon
+                        type="mdi"
+                        :path="mdiBullseyeArrow"
+                        style="width: 30px; height: 30px"
+                        class="text-[#9A5C30]"
+                      ></svg-icon>
+                      <p>
+                        {{ t('about.education.text2') }}
+                      </p>
+                    </div>
+                    <div class="flex items-center gap-5 mb-5 text-xl">
+                      <svg-icon
+                        type="mdi"
+                        :path="mdiBullseyeArrow"
+                        style="width: 30px; height: 30px"
+                        class="text-[#9A5C30]"
+                      ></svg-icon>
+                      <p>
+                        {{ t('about.education.text3') }}
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
             </div>
           </section>
           <section class="skills h-130 mt-15">
@@ -248,7 +306,7 @@ import { onMounted, ref, computed, watch, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { SplitText } from 'gsap/all'
 import SvgIcon from '@jamescoyle/vue-icon'
-import { mdiXml, mdiServerOutline, mdiDatabaseArrowUpOutline } from '@mdi/js'
+import { mdiXml, mdiServerOutline, mdiDatabaseArrowUpOutline, mdiBullseyeArrow } from '@mdi/js'
 
 const { t, locale } = useI18n()
 locale.value = 'en'
@@ -377,11 +435,28 @@ const setLang = (lang) => {
 }
 const formatIntroText = (text, key) => {
   const animatedWord = t('home.' + key)
-  const html = text.replace(
+  const formattedText = text.replace(
     `${key}`,
     `<span class="jump-text text-[#9A5C30] font-bold text-3xl">${animatedWord}</span>`,
   )
-  return html
+  return formattedText
+}
+
+const formatAboutText = (text, keys) => {
+  if (!Array.isArray(keys)) {
+    keys = [keys]
+  }
+  let formattedText = text
+  keys.forEach((key) => {
+    const word = t(key)
+    const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    const regex = new RegExp(escapedWord, 'g')
+    formattedText = formattedText.replace(
+      regex,
+      `<span class="text-[#9A5C30] font-bold">${word}</span>`,
+    )
+  })
+  return formattedText
 }
 const runIntroAnimation = () => {
   intro = gsap.timeline()

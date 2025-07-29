@@ -15,5 +15,29 @@
     "name": "ピェッ ピョー マウン",
     "role": "フルスタック",
     "action": "ご一緒に働く"
+  },
+  "about": {
+    "me": {
+      "title": "自己紹介",
+      "text1": "{year} の経験を持つウェブ開発者です。",
+      "text2": "{tech1}、{tech2}、{tech3} を主に使って開発しています。",
+      "text3": "コードだけでなく、{value1}、{value2}、そして人々が {value3} 使えるデジタル製品の創造にも力を入れています。",
+      "text4": "常に{habit1}、常に{habit2}しています。"
+    },
+    "education": {
+      "title": "学歴",
+      "text1": "大学入学資格試験 合格 — 2019年",
+      "text2": "Yangon Technological University — 2019年",
+      "text3": "University of the People — 2022年〜在学中"
+    },
+    "year": "1年",
+    "vue": "Vue",
+    "nuxt": "Nuxt",
+    "laravel": "Laravel",
+    "value1": "アクセシビリティ",
+    "value2": "パフォーマンス",
+    "value3": "楽しく",
+    "habit1": "学び",
+    "habit2": "成長"
   }
 }

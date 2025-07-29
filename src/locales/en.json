@@ -15,5 +15,29 @@
     "name": "Pyae Phyo Maung",
     "role": "full stack",
     "action": "working"
+  },
+  "about": {
+    "me": {
+      "title": "About Me",
+      "text1": "I am a web developer with {year} of experience.",
+      "text2": "I specialize in {tech1}, {tech2} and {tech3}.",
+      "text3": "Beyond the code, I care about {value1}, {value2} and creating digital products that people {value3} using.",
+      "text4": "Always {habit1}, always {habit2}."
+    },
+    "education": {
+      "title": "Education Background",
+      "text1": "Passed Matriculation Examination - 2019",
+      "text2": "Joined Yangon Technological University - 2019",
+      "text3": "Joined University of the People - 2022 ~ Present"
+    },
+    "year": "1 Year",
+    "vue": "Vue",
+    "nuxt": "Nuxt",
+    "laravel": "Laravel",
+    "value1": "accessibility",
+    "value2": "performance",
+    "value3": "enjoy",
+    "habit1": "learning",
+    "habit2": "improving"
   }
 }
