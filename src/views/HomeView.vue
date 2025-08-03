@@ -24,13 +24,40 @@
     <section class="main-content absolute top-0 left-0 z-15 overflow-hidden h-screen">
       <nav>
         <ul class="flex justify-between items-center text-lg font-bold">
-          <li v-for="(tab, index) in tabs" :key="index">
+          <li>
             <a
               href="#"
-              :class="['text-2xl', { 'tab-active': activeTab === index }]"
-              @click.prevent="changeTab(index)"
+              :class="['text-2xl', { 'tab-active': activeTab === 'home' }]"
+              @click.prevent="changeTab('home')"
             >
-              {{ tab }}
+              {{ t('nav.home') }}
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              :class="['text-2xl', { 'tab-active': activeTab === 'about' }]"
+              @click="changeTab('about')"
+            >
+              {{ t('nav.about') }}
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              :class="['text-2xl', { 'tab-active': activeTab === 'skills' }]"
+              @click.prevent="changeTab('skills')"
+            >
+              {{ t('nav.skills') }}
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              :class="['text-2xl', { 'tab-active': activeTab === 'experience' }]"
+              @click.prevent="changeTab('experience')"
+            >
+              {{ t('nav.experience') }}
             </a>
           </li>
           <li class="overflow-hidden select-none shadow-inner">
@@ -63,9 +90,9 @@
           </li>
         </ul>
       </nav>
-      <div class="overflow-auto h-full">
+      <div class="scroll-container overflow-auto h-full">
         <div>
-          <section class="home h-130 grid grid-cols-2 mt-5">
+          <section id="home" class="home h-120 grid grid-cols-2 mt-5">
             <div class="flex items-center justify-center text-center">
               <div class="-mt-15">
                 <div class="my-5 text-2xl overflow-hidden py-1">
@@ -117,56 +144,68 @@
               </div>
             </div>
           </section>
-          <section class="about h-screen mb-5 flex flex-start items-center">
+          <section id="about" class="about h-screen mb-5 flex flex-start items-center">
             <div class="container grid grid-cols-2 gap-10">
               <div class="text-xl">
-                <h2 class="text-[#9A5C30] font-bold text-3xl mb-7">{{ t('about.me.title') }}</h2>
-                <p
-                  class="mb-5"
-                  v-html="
-                    formatAboutText(t('about.me.text1', { year: t('about.year') }), 'about.year')
-                  "
-                ></p>
-                <p
-                  class="mb-5"
-                  v-html="
-                    formatAboutText(
-                      t('about.me.text2', { tech1: 'Vue', tech2: 'Nuxt', tech3: 'Laravel' }),
-                      ['Vue', 'Nuxt', 'Laravel'],
-                    )
-                  "
-                ></p>
-                <p
-                  class="mb-5"
-                  v-html="
-                    formatAboutText(
-                      t('about.me.text3', {
-                        value1: t('about.value1'),
-                        value2: t('about.value2'),
-                        value3: t('about.value3'),
-                      }),
-                      ['about.value1', 'about.value2', 'about.value3'],
-                    )
-                  "
-                ></p>
-                <p
-                  class=""
-                  v-html="
-                    formatAboutText(
-                      t('about.me.text4', {
-                        habit1: t('about.habit1'),
-                        habit2: t('about.habit2'),
-                      }),
-                      ['about.habit1', 'about.habit2'],
-                    )
-                  "
-                ></p>
+                <div class="overflow-hidden py-1 mb-7">
+                  <div class="about-title">
+                    <span class="text-[#9A5C30] font-bold text-3xl">
+                      {{ t('about.me.title') }}
+                    </span>
+                  </div>
+                </div>
+                <div class="about-left-para">
+                  <p
+                    class="mb-5"
+                    v-html="
+                      formatAboutText(t('about.me.text1', { year: t('about.year') }), 'about.year')
+                    "
+                  ></p>
+                  <p
+                    class="mb-5"
+                    v-html="
+                      formatAboutText(
+                        t('about.me.text2', { tech1: 'Vue', tech2: 'Nuxt', tech3: 'Laravel' }),
+                        ['about.vue', 'about.nuxt', 'about.laravel'],
+                      )
+                    "
+                  ></p>
+                  <p
+                    class="mb-5"
+                    v-html="
+                      formatAboutText(
+                        t('about.me.text3', {
+                          value1: t('about.value1'),
+                          value2: t('about.value2'),
+                          value3: t('about.value3'),
+                        }),
+                        ['about.value1', 'about.value2', 'about.value3'],
+                      )
+                    "
+                  ></p>
+                  <p
+                    class=""
+                    v-html="
+                      formatAboutText(
+                        t('about.me.text4', {
+                          habit1: t('about.habit1'),
+                          habit2: t('about.habit2'),
+                        }),
+                        ['about.habit1', 'about.habit2'],
+                      )
+                    "
+                  ></p>
+                </div>
               </div>
               <div>
-                <h2 class="text-[#9A5C30] font-bold text-3xl mb-10">
-                  {{ t('about.education.title') }}
-                </h2>
-                <ul>
+                <div class="overflow-hidden py-1 mb-7">
+                  <div class="about-title">
+                    <span class="text-[#9A5C30] font-bold text-3xl">
+                      {{ t('about.education.title') }}
+                    </span>
+                  </div>
+                </div>
+                <ul class="about-right-para">
                   <li>
                     <div class="flex items-center gap-5 mb-5 text-xl">
                       <svg-icon
@@ -206,7 +245,7 @@
               </div>
             </div>
           </section>
-          <section class="skills h-130 mt-15">
+          <section id="skills" class="skills h-130 mt-15" style="border: red">
             <div class="">
               <div class="flex justify-center items-center gap-25 mb-15">
                 <img
@@ -292,8 +331,8 @@
               </div>
             </div>
           </section>
-          <section class="experience"></section>
-          <section class="contact"></section>
+          <section id="experience" class="experience"></section>
+          <section id="contact" class="contact"></section>
         </div>
       </div>
     </section>
@@ -313,14 +352,9 @@ locale.value = 'en'
 const sky = ref<HTMLElement | null>(null)
 let intro = <gsap.core.Timeline | null>null
 let profile = <gsap.core.Timeline | null>null
-const tabs = computed(() => [
-  t('nav.home'),
-  t('nav.about'),
-  t('nav.skills'),
-  t('nav.experience'),
-  t('nav.contact'),
-])
-const activeTab = ref(0)
+let about = <gsap.core.Timeline | null>null
+const activeTab = ref('home')
+// const showMainContent = ref(false)
 
 onMounted(() => {
   gsap.from('.samurai-container', {
@@ -372,8 +406,8 @@ onMounted(() => {
   runIntroAnimation()
   // const samuraiImg = document.querySelector('.samurai')
   // const mainContent = document.querySelector('.main-content')
-  // let current = 0
-  // let isAnimating = false
+  // const current = 0
+  // const isAnimating = false
   // window.addEventListener('wheel', (e) => {
   //   if (isAnimating) return
 
@@ -389,15 +423,19 @@ onMounted(() => {
   //     } else if (current === 1) {
   //       // paper shows up
   //       isAnimating = true
-  //       gsap.to('.main-content', {
-  //         opacity: 1,
-  //         duration: 1,
-  //         ease: 'sine.inOut',
-  //         onComplete() {
-  //           isAnimating = false
-  //         },
-  //       })
+  //       showMainContent.value = true
   //       current++
+  //       nextTick(() => {
+  //         gsap.to('.main-content', {
+  //           opacity: 1,
+  //           duration: 0.5,
+  //           ease: 'sine.inOut',
+  //           onComplete() {
+  //             isAnimating = false
+  //           },
+  //         })
+  //         runIntroAnimation()
+  //       })
   //     }
   //   }
 
@@ -427,8 +465,12 @@ onMounted(() => {
   // })
 })
 
-const changeTab = (index) => {
-  activeTab.value = index
+const changeTab = (tabName) => {
+  activeTab.value = tabName
+  const target = document.querySelector(`.${tabName}`)
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth' })
+  }
 }
 const setLang = (lang) => {
   locale.value = lang
@@ -459,7 +501,13 @@ const formatAboutText = (text, keys) => {
   return formattedText
 }
 const runIntroAnimation = () => {
-  intro = gsap.timeline()
+  intro = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.home',
+      start: 'top 80%',
+      toggleActions: 'play none none none',
+    },
+  })
   intro.from('.intro', {
     y: 40,
     duration: 0.4,
@@ -518,6 +566,40 @@ const runIntroAnimation = () => {
       stagger: 0.2,
     })
 
+  about = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.about',
+      scroller: '.scroll-container',
+      start: 'top 10%',
+    },
+  })
+  about
+    .from('.about-title', {
+      y: 60,
+      duration: 0.6,
+      ease: 'power3.out',
+    })
+    .from(
+      '.about-left-para',
+      {
+        opacity: 0,
+        x: -20,
+        duration: 0.4,
+        ease: 'power3.out',
+      },
+      '-=0.2',
+    )
+    .from(
+      '.about-right-para',
+      {
+        opacity: 0,
+        x: 20,
+        duration: 0.4,
+        ease: 'power3.out',
+      },
+      '<',
+    )
+
   gsap.from('.tech-icon', {
     opacity: 0,
     scale: 0.5,
@@ -526,6 +608,11 @@ const runIntroAnimation = () => {
     stagger: {
       amount: 0.7,
       from: 'start',
+    },
+    scrollTrigger: {
+      trigger: '.skills',
+      scroller: '.scroll-container',
+      start: 'top 70%',
     },
   })
 }
