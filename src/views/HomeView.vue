@@ -118,6 +118,13 @@
                     ></span>
                   </div>
                 </div>
+                <div class="text-xl my-5 overflow-hidden py-1">
+                  <a href="/Pyae_Phyo_Maung_Resume.docx" download>
+                    <button class="cv-button bg-[#9A5C30] text-[#FCEDD5] px-6 py-2 cursor-pointer">
+                      Download CV
+                    </button>
+                  </a>
+                </div>
               </div>
             </div>
             <div class="flex justify-center items-center relative">
@@ -238,6 +245,28 @@
                       ></svg-icon>
                       <p>
                         {{ t('about.education.text3') }}
+                      </p>
+                    </div>
+                    <div class="flex items-center gap-5 mb-5 text-xl">
+                      <svg-icon
+                        type="mdi"
+                        :path="mdiBullseyeArrow"
+                        style="width: 30px; height: 30px"
+                        class="text-[#9A5C30]"
+                      ></svg-icon>
+                      <p>
+                        {{ t('about.education.text4') }}
+                      </p>
+                    </div>
+                    <div class="flex items-center gap-5 mb-5 text-xl">
+                      <svg-icon
+                        type="mdi"
+                        :path="mdiBullseyeArrow"
+                        style="width: 30px; height: 30px"
+                        class="text-[#9A5C30]"
+                      ></svg-icon>
+                      <p>
+                        {{ t('about.education.text5') }}
                       </p>
                     </div>
                   </li>
@@ -514,6 +543,12 @@ const runIntroAnimation = () => {
     ease: 'power3.out',
     stagger: 0.2,
   })
+  intro.from('.cv-button', {
+    opacity: 0,
+    scale: 0.8,
+    duration: 0.4,
+    ease: 'bounce.out',
+  })
   intro.to({}, { duration: 0.5 })
   intro.add(() => {
     const split = SplitText.create('.jump-text', {
@@ -662,5 +697,12 @@ watch(locale, async () => {
   background-size: 100% 50px;
   background-position: left bottom;
   padding-bottom: 30px;
+}
+.cv-button {
+  border: 2px solid transparent;
+}
+.cv-button:hover {
+  transform: scale(1.02) !important;
+  border-color: black;
 }
 </style>
