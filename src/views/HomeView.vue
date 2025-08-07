@@ -57,7 +57,7 @@
               :class="['text-2xl', { 'tab-active': activeTab === 'experience' }]"
               @click.prevent="changeTab('experience')"
             >
-              {{ t('nav.experience') }}
+              {{ t('nav.project') }}
             </a>
           </li>
           <li class="overflow-hidden select-none shadow-inner">
@@ -275,7 +275,7 @@
             </div>
           </section>
           <section id="skills" class="skills h-130 mt-15" style="border: red">
-            <div class="">
+            <div class="h-full flex flex-col justify-center items-center">
               <div class="flex justify-center items-center gap-25 mb-15">
                 <img
                   class="tech-icon cursor-pointer"
@@ -363,6 +363,18 @@
           <section id="experience" class="experience"></section>
           <section id="contact" class="contact"></section>
         </div>
+      </div>
+      <div class="absolute right-17 bottom-5 overflow-hidden pt-5">
+        <button
+          class="contact-btn bg-[#9A5C30] text-[#FCEDD5] border-2 border-black rounded-full cursor-pointer font-bold"
+          style="width: 80px; height: 80px"
+        >
+          {{ t('nav.contact') }}
+        </button>
+        <div
+          class="contact-btn-shadow left-1/2 bg-[#373737] blur-[2px]"
+          style="width: 80px; height: 10px; border-radius: 50%"
+        ></div>
       </div>
     </section>
   </main>
@@ -548,6 +560,45 @@ const runIntroAnimation = () => {
     scale: 0.8,
     duration: 0.4,
     ease: 'bounce.out',
+  })
+  intro.from(
+    '.contact-btn',
+    {
+      opacity: 0,
+      scale: 0.8,
+      duration: 0.8,
+      ease: 'ease.out',
+    },
+    '<',
+  )
+  intro.from(
+    '.contact-btn-shadow',
+    {
+      opacity: 0,
+      scale: 0.8,
+      duration: 0.8,
+      ease: 'ease.out',
+    },
+    '<',
+  )
+  intro.add(() => {
+    gsap.to('.contact-btn', {
+      y: -15,
+      duration: 0.8,
+      ease: 'ease.inOut',
+      repeat: -1,
+      yoyo: true,
+    })
+
+    gsap.to('.contact-btn-shadow', {
+      scaleX: 0.6,
+      scaleY: 0.4,
+      opacity: 0.5,
+      duration: 0.8,
+      ease: 'power1.out',
+      repeat: -1,
+      yoyo: true,
+    })
   })
   intro.to({}, { duration: 0.5 })
   intro.add(() => {
