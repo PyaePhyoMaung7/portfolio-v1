@@ -66,10 +66,26 @@
           class="tree absolute top-1 left-0 transform -translate-y-[224.5%] -translate-x-[125%] scale-350"
           style="z-index: -1 !important"
         />
-        <img
-          src="/images/samurai1.png"
-          class="samurai absolute z-10 top-4 left-5 w-20 transform -translate-y-full"
-        />
+        <div>
+          <img
+            src="/images/samurai1.png"
+            class="samurai absolute z-10 top-4 left-5 w-20 transform -translate-y-full"
+          />
+          <div
+            v-if="showSpeech1"
+            class="speech-bubble speech-bubble1 absolute z-10 top-[-200px] left-[-255px] w-75 font-bold"
+          >
+            I have received a letter from <br />
+            <span class="text-lg">Pyae Phyo Maung</span>
+          </div>
+          <div
+            v-if="showSpeech2"
+            class="speech-bubble speech-bubble2 absolute z-10 top-[-170px] left-[-100px] w-35 font-bold"
+          >
+            Let's see ...
+          </div>
+        </div>
+
         <img src="/images/cliff.png" class="cliff w-60" />
       </div>
     </section>
@@ -77,6 +93,7 @@
     <section
       v-if="showMainContent"
       class="main-content absolute top-0 left-0 z-15 overflow-hidden h-screen w-screen"
+      style="opacity: 0"
     >
       <div class="progress-container absolute top-0 left-0 z-30" style="height: 3px; width: 100%">
         <div class="progress-bar bg-[#9a5c30] h-full" :style="{ width: progress + '%' }"></div>
@@ -150,8 +167,8 @@
         </ul>
       </nav>
       <div class="scroll-container overflow-auto h-full" ref="scrollContainer">
-        <section id="home" class="home h-120 grid grid-cols-2">
-          <div class="flex items-center justify-center text-center">
+        <section id="home" class="home h-screen grid grid-cols-2">
+          <div class="flex items-center justify-center text-center -mt-20">
             <div class="">
               <div class="my-5 text-2xl overflow-hidden py-1">
                 <div class="intro">
@@ -185,7 +202,7 @@
               </div>
             </div>
           </div>
-          <div class="flex justify-center items-center relative mt-7">
+          <div class="flex justify-center items-center relative">
             <svg-icon
               type="mdi"
               :path="mdiXml"
@@ -204,7 +221,7 @@
               style="width: 50px; height: 50px"
               class="profile-icon absolute top-75 left-40 text-[#9A5C30]"
             ></svg-icon>
-            <div class="ml-20" style="width: 200px">
+            <div class="ml-20 -mt-20" style="width: 200px">
               <img src="/images/profile.png" class="profile-img" />
             </div>
           </div>
@@ -332,7 +349,7 @@
             </div>
           </div>
         </section>
-        <section id="skills" class="skills h-130 mt-15" style="border: red">
+        <section id="skills" class="skills h-screen mt-15" style="border: red">
           <div class="h-full flex flex-col justify-center items-center">
             <div class="flex justify-center items-center gap-25 mb-15 overflow-hidden w-full">
               <div class="svg-container relative">
@@ -529,19 +546,27 @@ let intro = <gsap.core.Timeline | null>null
 let profile = <gsap.core.Timeline | null>null
 let about = <gsap.core.Timeline | null>null
 const activeTab = ref<string>('home')
+const showSpeech1 = ref<boolean>(true)
+const showSpeech2 = ref<boolean>(false)
 const progress = ref<number>(0)
 const scrollContainer = ref<HTMLElement | null>(null)
 // false for final
-const showMainContent = ref<boolean>(true)
+const showMainContent = ref<boolean>(false)
 
 const sections = ['home', 'about', 'skills', 'projects']
 
 onMounted(() => {
-  gsap.from('.samurai-container', {
+  const tl = gsap.timeline()
+  tl.from('.samurai-container', {
     x: 50,
     y: 50,
     duration: 1,
-  })
+  }).fromTo(
+    '.speech-bubble1',
+    { scale: 0.8, opacity: 0 },
+    { scale: 1, opacity: 1, duration: 0.4, ease: 'back.out(1.7)' },
+    '>',
+  )
 
   gsap.from('.moon', {
     y: 70,
@@ -601,68 +626,76 @@ onMounted(() => {
   }
 
   // delete in final
-  runIntroAnimation()
+  // runIntroAnimation()
 
   // use in final
-  // const samuraiImg = document.querySelector('.samurai')
-  // const mainContent = document.querySelector('.main-content')
-  // let current = 0
-  // let isAnimating = false
-  // window.addEventListener('wheel', (e) => {
-  //   if (isAnimating) return
+  const samuraiImg = document.querySelector('.samurai')
+  const mainContent = document.querySelector('.main-content')
+  let current = 0
+  let isAnimating = false
+  window.addEventListener('wheel', async (e) => {
+    if (isAnimating) return
 
-  //   if (e.deltaY > 0) {
-  //     if (current === 0) {
-  //       // samurai reads paper
-  //       isAnimating = true
-  //       if (samuraiImg) samuraiImg.src = '/images/samurai2.png'
-  //       setTimeout(() => {
-  //         isAnimating = false
-  //       }, 500)
-  //       current++
-  //     } else if (current === 1) {
-  //       // paper shows up
-  //       isAnimating = true
-  //       showMainContent.value = true
-  //       current++
-  //       nextTick(() => {
-  //         gsap.to('.main-content', {
-  //           opacity: 1,
-  //           duration: 0.5,
-  //           ease: 'sine.inOut',
-  //           onComplete() {
-  //             isAnimating = false
-  //           },
-  //         })
-  //         runIntroAnimation()
-  //       })
-  //     }
-  //   }
+    if (e.deltaY > 0) {
+      if (current === 0 && showSpeech1.value) {
+        // samurai reads paper
+        isAnimating = true
+        if (samuraiImg) samuraiImg.src = '/images/samurai2.png'
+        showSpeech1.value = false
+        showSpeech2.value = true
+        await nextTick()
+        gsap.fromTo(
+          '.speech-bubble2',
+          { scale: 0.3, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.4, ease: 'back.out(1.7)' },
+        )
+        setTimeout(() => {
+          isAnimating = false
+        }, 500)
+        current++
+      } else if (current === 1) {
+        // paper shows up
+        isAnimating = true
+        showMainContent.value = true
+        current++
+        nextTick(() => {
+          gsap.to('.main-content', {
+            opacity: 1,
+            duration: 0.5,
+            ease: 'sine.inOut',
+            onComplete() {
+              isAnimating = false
+            },
+          })
+          runIntroAnimation()
+        })
+      }
+    }
 
-  //   if (e.deltaY < 0) {
-  //     if (current === 1) {
-  //       // samurai stand again
-  //       isAnimating = true
-  //       if (samuraiImg) samuraiImg.src = '/images/samurai1.png'
-  //       setTimeout(() => {
-  //         isAnimating = false
-  //       }, 500)
-  //       current--
-  //     } else if (current === 2) {
-  //       // paper hides
-  //       isAnimating = true
-  //       gsap.to('.main-content', {
-  //         opacity: 0,
-  //         duration: 1,
-  //         ease: 'sine.inOut',
-  //         onComplete() {
-  //           isAnimating = false
-  //         },
-  //       })
-  //       current--
-  //     }
-  //   }
-  // })
+    //   if (e.deltaY < 0) {
+    //     if (current === 1) {
+    //       // samurai stand again
+    //       isAnimating = true
+    //       if (samuraiImg) samuraiImg.src = '/images/samurai1.png'
+    //       setTimeout(() => {
+    //         isAnimating = false
+    //       }, 500)
+    //       current--
+    //     } else if (current === 2) {
+    //       // paper hides
+    //       isAnimating = true
+    //       gsap.to('.main-content', {
+    //         opacity: 0,
+    //         duration: 1,
+    //         ease: 'sine.inOut',
+    //         onComplete() {
+    //           isAnimating = false
+    //         },
+    //       })
+    //       current--
+    //     }
+    //   }
+  })
   makeContentArrowScrollable()
   runTechIconAnimation()
 
@@ -947,12 +980,8 @@ const runIntroAnimation = () => {
 }
 
 watch(locale, async () => {
-  intro?.kill()
-  intro = null
-  profile?.kill()
-  profile = null
   await nextTick()
-  runIntroAnimation()
+  gsap.globalTimeline.kill()
 })
 watch(scrollContainer, (val) => {
   if (val) {
@@ -1014,5 +1043,14 @@ watch(scrollContainer, (val) => {
 .tech-text {
   transform-origin: center bottom;
   user-select: none;
+}
+.speech-bubble {
+  display: inline-block;
+  background: #b5b5b5;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 2px solid black;
+  transform-origin: bottom center;
+  opacity: 0;
 }
 </style>
