@@ -15,3 +15,7 @@ html {
 ::-webkit-scrollbar-thumb {
   background-color: #9a5c30;
 }
+
+[v-cloak] {
+  display: none;
+}
