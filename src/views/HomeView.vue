@@ -1,5 +1,3 @@
-<script setup lang="ts"></script>
-
 <template>
   <main>
     <section ref="sky" class="main-background relative">
@@ -532,12 +530,11 @@
 </template>
 
 <script setup lang="ts">
+import { mdiBullseyeArrow, mdiDatabaseArrowUpOutline, mdiServerOutline, mdiXml } from '@mdi/js'
 import gsap from 'gsap'
-import { onMounted, ref, computed, watch, nextTick } from 'vue'
-import { useI18n } from 'vue-i18n'
 import { SplitText } from 'gsap/all'
-import SvgIcon from '@jamescoyle/vue-icon'
-import { mdiXml, mdiServerOutline, mdiDatabaseArrowUpOutline, mdiBullseyeArrow } from '@mdi/js'
+import { nextTick, onMounted, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const { t, locale } = useI18n()
 locale.value = 'en'
@@ -612,7 +609,7 @@ onMounted(() => {
     star.style.left = x + 'px'
     star.style.top = y + 'px'
 
-    sky?.value.appendChild(star)
+    sky?.value?.appendChild(star)
 
     gsap.to(star, {
       scale: Math.random() * 1.5 + 0.5,
@@ -629,8 +626,8 @@ onMounted(() => {
   // runIntroAnimation()
 
   // use in final
-  const samuraiImg = document.querySelector('.samurai')
-  const mainContent = document.querySelector('.main-content')
+  const samuraiImg = document.querySelector('.samurai') as HTMLImageElement | null
+  // const mainContent = document.querySelector('.main-content')
   let current = 0
   let isAnimating = false
   window.addEventListener('wheel', async (e) => {
@@ -703,13 +700,13 @@ onMounted(() => {
   scrollContainer.value?.addEventListener('scroll', updateProgressAndTab)
 })
 
-const changeTab = (tabName) => {
+const changeTab = (tabName: string) => {
   activeTab.value = tabName
   const target = document.querySelector(`.${tabName}`)
   if (target) {
     const navbarHeight = tabName === 'home' ? 75 : 0
-    const scrollY = target.offsetTop - navbarHeight
-    scrollContainer.value.scrollTo({
+    const scrollY = (target as HTMLElement).offsetTop - navbarHeight
+    scrollContainer.value?.scrollTo({
       top: scrollY,
       behavior: 'smooth',
     })
@@ -718,10 +715,12 @@ const changeTab = (tabName) => {
 const makeContentArrowScrollable = () => {
   const container = document.querySelector('.scroll-container')
   let scrollDirection = 0
-  let rafId
+  let rafId: number | null
   function smoothScroll() {
-    container.scrollTop += scrollDirection * 20
-    rafId = requestAnimationFrame(smoothScroll)
+    if (container) {
+      container.scrollTop += scrollDirection * 20
+      rafId = requestAnimationFrame(smoothScroll)
+    }
   }
   document.addEventListener('keydown', (event) => {
     if (event.key === 'ArrowDown') {
@@ -737,15 +736,17 @@ const makeContentArrowScrollable = () => {
   document.addEventListener('keyup', (event) => {
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
       scrollDirection = 0
-      cancelAnimationFrame(rafId)
-      rafId = null
+      if (rafId) {
+        cancelAnimationFrame(rafId)
+        rafId = null
+      }
     }
   })
 }
-const setLang = (lang) => {
+const setLang = (lang: string) => {
   locale.value = lang
 }
-const formatIntroText = (text, key) => {
+const formatIntroText = (text: string, key: string) => {
   const animatedWord = t('home.' + key)
   const formattedText = text.replace(
     `${key}`,
@@ -753,7 +754,7 @@ const formatIntroText = (text, key) => {
   )
   return formattedText
 }
-const formatAboutText = (text, keys) => {
+const formatAboutText = (text: string, keys: string | string[]) => {
   if (!Array.isArray(keys)) {
     keys = [keys]
   }
