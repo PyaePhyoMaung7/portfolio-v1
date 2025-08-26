@@ -10,7 +10,8 @@
     "intro": {
       "greeting": "I am {name}",
       "role": "A {role} web developer",
-      "closing": "I look forward to {action} with you"
+      "closing": "I look forward to {action} with you",
+      "cvDownload": "Download CV"
     },
     "name": "Pyae Phyo Maung",
     "role": "full stack",

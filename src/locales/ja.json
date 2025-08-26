@@ -10,7 +10,8 @@
     "intro": {
       "greeting": "{name}です",
       "role": "{role}ウェブ開発者です",
-      "closing": "{action}のを楽しみにしています"
+      "closing": "{action}のを楽しみにしています",
+      "cvDownload": "CVをダウンロード"
     },
     "name": "ピェッ ピョー マウン",
     "role": "フルスタック",

@@ -144,8 +144,8 @@
             <li>
               <a
                 href="#"
-                :class="['text-2xl', { 'tab-active': activeTab === 'experience' }]"
-                @click.prevent="changeTab('experience')"
+                :class="['text-2xl', { 'tab-active': activeTab === 'project' }]"
+                @click.prevent="changeTab('project')"
               >
                 {{ t('nav.project') }}
               </a>
@@ -210,8 +210,36 @@
                 <div class="text-xl my-5 overflow-hidden py-1">
                   <a href="/Pyae_Phyo_Maung_Resume.docx" download>
                     <button class="cv-button bg-[#9A5C30] text-[#FCEDD5] px-6 py-2 cursor-pointer">
-                      Download CV
+                      {{ t('home.intro.cvDownload') }}
                     </button>
+                  </a>
+                </div>
+                <div
+                  class="flex justify-center items-center text-xl my-5 overflow-hidden py-1 gap-5"
+                >
+                  <a
+                    href="https://www.facebook.com/share/1DQHrNQGR8/"
+                    class="social-icon hover:scale-120"
+                  >
+                    <img class="cursor-pointer" src="/icons/Facebook.svg" alt="facebook icon" />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/hakkai_0w0?igsh=MTh6bjNybXJ0dmszOQ=="
+                    class="social-icon hover:scale-120"
+                  >
+                    <img class="cursor-pointer" src="/icons/Instagram.svg" alt="instagram icon" />
+                  </a>
+                  <a href="https://github.com/PyaePhyoMaung7" class="social-icon hover:scale-120">
+                    <img class="cursor-pointer" src="/icons/Github.svg" alt="github icon" />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/pyae-phyo-maung-a534672b2/"
+                    class="social-icon hover:scale-120"
+                  >
+                    <img class="cursor-pointer" src="/icons/Linkedin.svg" alt="linkedin icon" />
+                  </a>
+                  <a href="mailto:pyaephyomg1004@gmail.com" class="social-icon hover:scale-120">
+                    <img class="cursor-pointer" src="/icons/Mail.svg" alt="mail icon" />
                   </a>
                 </div>
               </div>
@@ -526,7 +554,169 @@
               </div>
             </div>
           </section>
-          <section id="experience" class="experience"></section>
+          <section id="project" class="project h-screen mt-15" style="border: red">
+            <div class="h-full flex flex-col justify-center items-center">
+              <div class="flex justify-center items-center gap-25 mb-15 overflow-hidden w-full">
+                <div class="svg-container relative">
+                  <img
+                    class="tech-icon cursor-pointer"
+                    src="/icons/HTML5.svg"
+                    alt="html icon"
+                    style="width: 40px"
+                  />
+                  <span class="tech-text text-xl font-bold text-[#9a5c30] absolute top-[60px] z-15"
+                    >HTML</span
+                  >
+                </div>
+                <div class="svg-container relative">
+                  <img
+                    class="tech-icon cursor-pointer"
+                    src="/icons/CSS3.svg"
+                    alt="css icon"
+                    style="width: 40px"
+                  />
+                  <span
+                    class="tech-text text-xl font-bold text-[#9a5c30] absolute top-[60px] left-[2px] z-15"
+                    >CSS</span
+                  >
+                </div>
+                <div class="svg-container relative">
+                  <img
+                    class="tech-icon cursor-pointer"
+                    src="/icons/JavaScript.svg"
+                    alt="javascript icon"
+                    style="width: 40px"
+                  />
+                  <span
+                    class="tech-text text-xl font-bold text-[#9a5c30] absolute top-[60px] left-[-25px] z-15"
+                    >JavaScript</span
+                  >
+                </div>
+                <div class="svg-container relative">
+                  <img
+                    class="tech-icon cursor-pointer"
+                    src="/icons/jQuery.svg"
+                    alt="jquery icon"
+                    style="width: 40px"
+                  />
+                  <span
+                    class="tech-text text-xl font-bold text-[#9a5c30] absolute top-[60px] left-[-8px] z-15"
+                    >jQuery</span
+                  >
+                </div>
+                <div class="svg-container relative">
+                  <img
+                    class="tech-icon cursor-pointer"
+                    src="/icons/Bootstrap.svg"
+                    alt="bootstrap icon"
+                    style="width: 40px"
+                  />
+                  <span
+                    class="tech-text text-xl font-bold text-[#9a5c30] absolute top-[60px] left-[-20px] z-15"
+                    >Bootstrap</span
+                  >
+                </div>
+                <div class="svg-container relative">
+                  <img
+                    class="tech-icon cursor-pointer"
+                    src="/icons/TailwindCSS.svg"
+                    alt="tailwind css icon"
+                    style="width: 40px"
+                  />
+                  <span
+                    class="tech-text text-xl font-bold text-[#9a5c30] absolute top-[60px] left-[-30px] z-15"
+                    >TailwindCSS</span
+                  >
+                </div>
+                <div class="svg-container relative">
+                  <img
+                    class="tech-icon cursor-pointer"
+                    src="/icons/TypeScript.svg"
+                    alt="typescript icon"
+                    style="width: 40px"
+                  />
+                  <span
+                    class="tech-text text-xl font-bold text-[#9a5c30] absolute top-[60px] left-[-25px] z-15"
+                    >TypeScript</span
+                  >
+                </div>
+              </div>
+              <div class="flex justify-center items-center gap-25 overflow-hidden w-full">
+                <div class="svg-container relative">
+                  <img
+                    class="tech-icon cursor-pointer"
+                    src="/icons/VueJs.svg"
+                    alt="vue js icon"
+                    style="width: 40px"
+                  />
+                  <span
+                    class="tech-text text-xl font-bold text-[#9a5c30] absolute top-[60px] left-[-10px] z-15"
+                    >VueJs</span
+                  >
+                </div>
+                <div class="svg-container relative">
+                  <img
+                    class="tech-icon cursor-pointer"
+                    src="/icons/NuxtJs.svg"
+                    alt="nuxt js icon"
+                    style="width: 40px"
+                  />
+                  <span
+                    class="tech-text text-xl font-bold text-[#9a5c30] absolute top-[60px] left-[-10px] z-15"
+                    >NuxtJs</span
+                  >
+                </div>
+                <div class="svg-container relative">
+                  <img
+                    class="tech-icon cursor-pointer"
+                    src="/icons/Vuetify.svg"
+                    alt="vuetify icon"
+                    style="width: 40px"
+                  />
+                  <span
+                    class="tech-text text-xl font-bold text-[#9a5c30] absolute top-[60px] left-[-12px] z-15"
+                    >Vuetify</span
+                  >
+                </div>
+                <div class="svg-container relative">
+                  <img
+                    class="tech-icon cursor-pointer"
+                    src="/icons/PHP.svg"
+                    alt="php icon"
+                    style="width: 40px"
+                  />
+                  <span
+                    class="tech-text text-xl font-bold text-[#9a5c30] absolute top-[60px] left-[5px] z-15"
+                    >PHP</span
+                  >
+                </div>
+                <div class="svg-container relative">
+                  <img
+                    class="tech-icon cursor-pointer"
+                    src="/icons/Laravel.svg"
+                    alt="laravel icon"
+                    style="width: 40px"
+                  />
+                  <span
+                    class="tech-text text-xl font-bold text-[#9a5c30] absolute top-[60px] left-[-15px] z-15"
+                    >Laravel</span
+                  >
+                </div>
+                <div class="svg-container relative">
+                  <img
+                    class="tech-icon cursor-pointer"
+                    src="/icons/MySQL.svg"
+                    alt="mysql icon"
+                    style="width: 40px"
+                  />
+                  <span
+                    class="tech-text text-xl font-bold text-[#9a5c30] absolute top-[60px] left-[-10px] z-15"
+                    >MySQL</span
+                  >
+                </div>
+              </div>
+            </div>
+          </section>
           <section id="contact" class="contact"></section>
         </div>
         <div class="absolute right-17 bottom-5 overflow-hidden pt-5">
@@ -568,7 +758,7 @@ const progress = ref<number>(0)
 const scrollContainer = ref<HTMLElement | null>(null)
 // false for final
 const showMainContent = ref<boolean>(false)
-const sections = ['home', 'about', 'skills', 'projects']
+const sections = ['home', 'about', 'skills', 'project']
 const loadingText = ref<string[]>('Loading'.split(''))
 
 const preloadImages = () => {
@@ -714,7 +904,7 @@ onMounted(async () => {
         isAnimating = true
         showMainContent.value = true
         current++
-        nextTick(() => {
+        await nextTick(() => {
           gsap.to('.main-content', {
             opacity: 1,
             duration: 0.5,
@@ -723,8 +913,10 @@ onMounted(async () => {
               isAnimating = false
             },
           })
-          runIntroAnimation()
         })
+        runIntroAnimation()
+        makeContentArrowScrollable()
+        runTechIconAnimation()
       }
     }
 
@@ -752,15 +944,12 @@ onMounted(async () => {
     //     }
     //   }
   })
-  makeContentArrowScrollable()
-  runTechIconAnimation()
 
   // delete in final
   scrollContainer.value?.addEventListener('scroll', updateProgressAndTab)
 })
 
 const changeTab = (tabName: string) => {
-  activeTab.value = tabName
   const target = document.querySelector(`.${tabName}`)
   if (target) {
     const navbarHeight = tabName === 'home' ? 75 : 0
@@ -856,14 +1045,14 @@ const runTechIconAnimation = () => {
     const text = container.querySelector('.tech-text')
     const tl = gsap.timeline({ paused: true })
     tl.to(svg, {
-      duration: 0.2,
+      duration: 0.1,
       rotationX: 90,
       transformOrigin: '50% 100%',
       ease: 'power2.in',
     }).to(
       text,
       {
-        duration: 0.3,
+        duration: 0.2,
         top: '-5px',
         ease: 'power2.out',
       },
@@ -897,6 +1086,15 @@ const runIntroAnimation = () => {
     duration: 0.4,
     ease: 'bounce.out',
   })
+  intro.from(
+    '.social-icon',
+    {
+      opacity: 0,
+      ease: 'ease.out',
+      stagger: 0.1,
+    },
+    '<',
+  )
   intro.from(
     '.contact-btn',
     {
