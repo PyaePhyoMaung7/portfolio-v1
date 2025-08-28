@@ -75,11 +75,14 @@
         </div>
 
         <div class="samurai-container absolute z-10 bottom-[0%] right-[0%]">
-          <img
-            src="/images/tree.png"
-            class="tree absolute top-1 left-0 transform -translate-y-[224.5%] -translate-x-[125%] scale-350"
-            style="z-index: -1 !important"
-          />
+          <div class="tree-container">
+            <img
+              src="/images/tree.png"
+              class="tree absolute top-1 left-0 transform -translate-y-[224.5%] -translate-x-[125%] scale-350"
+              style="z-index: -1 !important"
+            />
+          </div>
+
           <div>
             <img
               src="/images/samurai1.png"
@@ -798,6 +801,39 @@ const preloadImages = () => {
   )
 }
 
+const createLeaves = () => {
+  const treeContainer = document.querySelector('.tree-container') as HTMLElement
+  const treeImage = document.querySelector('.tree-container .tree') as HTMLImageElement
+  const leaveCount = 25
+  const width = treeImage.offsetWidth
+  const height = treeImage.offsetHeight
+  for (let i = 0; i < leaveCount; i++) {
+    const leaf = document.createElement('img')
+    leaf.src = '/images/leaf.png'
+    leaf.className = 'leaf absolute z-20'
+    leaf.style.width = '10px'
+    leaf.style.height = '10px'
+    treeContainer?.appendChild(leaf)
+    setTimeout(() => animateLeaf(leaf, width, height), Math.random() * 7000)
+  }
+}
+const animateLeaf = (leaf: HTMLElement, width: number, height: number) => {
+  gsap.set(leaf, {
+    x: Math.random() * width * -2 + width * 1.3,
+    y: (Math.random() + 2) * (height * -1),
+    rotation: gsap.utils.random(-30, 30),
+  })
+  gsap.to(leaf, {
+    x: -100 - Math.random() * 500,
+    y: height + 200 + Math.random() * 50,
+    duration: gsap.utils.random(6, 12),
+    rotation: gsap.utils.random(-360, 360),
+    ease: 'power1.inOut',
+    delay: Math.random() * 3,
+    onComplete: () => animateLeaf(leaf, width, height), // loop forever
+  })
+}
+
 onMounted(async () => {
   await preloadImages()
   loading.value = false
@@ -813,7 +849,6 @@ onMounted(async () => {
     { scale: 1, opacity: 1, duration: 0.4, ease: 'back.out(1.7)' },
     '>',
   )
-
   gsap.from('.moon', {
     y: 70,
     x: 200,
@@ -826,7 +861,7 @@ onMounted(async () => {
     duration: 1,
     ease: 'power1.out',
   })
-
+  createLeaves()
   const scrollTimeline = gsap.timeline()
   scrollTimeline
     .from('.scroll-message .text', {
